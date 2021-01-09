@@ -1,9 +1,9 @@
-data "aws_iam_user" "ci"{
+data "aws_iam_user" "ci" {
   user_name = "datagov-ci"
 }
 
 resource "aws_iam_user_policy_attachment" "ci" {
-  user      = data.aws_iam_user.ci.user_name
+  user       = data.aws_iam_user.ci.user_name
   policy_arn = aws_iam_policy.ci.arn
 }
 

@@ -37,8 +37,8 @@ module "anuar_ustayev" {
 }
 
 module "karlen_manaseryan" {
-  source  = "./user"
-  name = "karlen.manaseryan@datopian.com"
+  source = "./user"
+  name   = "karlen.manaseryan@datopian.com"
   groups = [
     "developers",
     "datagov-ckan-multi"
