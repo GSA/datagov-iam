@@ -3,7 +3,7 @@ name: Terraform
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 env:
@@ -72,8 +72,8 @@ jobs:
           echo "Check plan output."
           exit 1
 
-        # On push to master, build or change infrastructure according to
+        # On push to main, build or change infrastructure according to
         # Terraform configuration files
       - name: apply
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply ${{ steps.plan.outputs.tfplan }}
