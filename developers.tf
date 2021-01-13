@@ -66,10 +66,10 @@ resource "aws_iam_group_policy_attachment" "developers_acm_full" {
 }
 
 resource "aws_iam_group_policy" "developers_policy" {
-  name       = "developers_policy"
-  group      = aws_iam_group.developers.name
+  name  = "developers_policy"
+  group = aws_iam_group.developers.name
   # Policy copied from CI user
-  policy     = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

@@ -21,13 +21,10 @@ Manage Data.gov sandbox access through Infrastructure as Code.
 ## Usage
 
 Changes are applied automatically through [continuous
-deployment](https://circleci.com/gh/GSA/workflows/datagov-infrastructure-live).
-As part of the PR review, you should check that the `iam-plan` includes only
-expected changes.
+deployment](https://github.com/GSA/datagov-iam/actions). As part of the PR
+review, you should check that terraform plan includes only expected changes.
 
-The `master` branch will actually apply changes. Be sure to check the `iam-plan`
-step before [approving the
-workflow](https://circleci.com/gh/GSA/workflows/datagov-infrastructure-live).
+The `main` branch will automatically apply changes.
 
 
 ### New users
@@ -58,3 +55,55 @@ _Note: the new user may have to sign out and back in again._
 ### Removing a user
 
 Remove the user's entry from `users.tf`.
+
+
+## Development
+
+### Requirements
+
+- [Configure AWS Access Key](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+- [jq](https://stedolan.github.io/jq/)
+- [awscli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html)
+- [terraform](https://www.terraform.io/downloads.html) v0.12
+
+These tools are available through your package manager, or through pip.
+
+
+### Setup AWS credentials
+
+All developers are in the `developers` IAM group which enforces access through
+multi-factor authentication (MFA). You must first get temporary credentials to
+use with Terraform.
+
+First, copy `env.sample` to `.env`, customize it with your AWS access key.
+`AWS_MFA_DEVICE_ARN` should be set with your MFA arn. This can be found on the
+"My Security Credentials" page in the AWS console. Then source these environment
+variables.
+
+    $ source .env
+
+You'll be prompted for your MFA code. Enter it without any spaces when prompted.
+
+These credentials are good for 12 hours.
+
+
+## First-time setup
+
+Create the s3 bucket (`datagov-terraform-state`) to hold the terraform state defined
+in [main.tf](./main.tf).
+
+Manually create the IAM CI deploy user (`datagov-ci`) for use with CI. An
+appropriate terraform-managed policy will be attached to this user.
+
+The first execution of `iam` should be done manually with admin permissions.
+
+    $ terraform init
+    $ terraform apply
+
+Once provisioned, the appropriate permissions will be attached to the
+`datagov-ci` user and execution of the other projects can be done via CI/CD.
+
+
+## History
+
+This repository was split out from [GSA/datagov-infrastructure-live](https://github.com/GSA/datagov-infrastructure-live).
