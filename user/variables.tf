@@ -3,6 +3,6 @@ variable "name" {
 }
 
 variable "groups" {
-  default = []
+  default     = []
   description = "List of IAM groups to assign the user to."
 }
