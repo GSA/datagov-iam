@@ -1,5 +1,6 @@
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
+  version = "~> 2.70.0"
 }
 
 terraform {
@@ -10,6 +11,8 @@ terraform {
     encrypt        = true
     dynamodb_table = "datagov-lock-table"
   }
+
+  required_version = "~> 0.12.0"
 }
 
 # https://github.com/18F/aws-admin/blob/035c2dc740fe80cf0e6d5a9cb800cf39bd18d34b/terraform/iam/base.tf#L121-L131

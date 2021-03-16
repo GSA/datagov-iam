@@ -1,0 +1,21 @@
+---
+name: check
+
+on:
+  schedule:
+    - cron:  "0 8 * * *"
+
+jobs:
+  check_drift:
+    runs-on: ubuntu-latest
+    name: Check for drift
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: check
+        uses: dflook/terraform-check@v1
+        with:
+          path: .
+
+      # TODO open an issue on failure
