@@ -42,7 +42,7 @@ module "kishore_vuppala" {
 
 module "nicholas_kumia" {
   source = "./user"
-  name   = "nicholas.kumia@reisystems.com"
+  name   = "nicholas.kumia@gsa.gov"
   groups = ["developers"]
 }
 
