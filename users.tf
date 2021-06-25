@@ -40,3 +40,9 @@ module "kishore_vuppala" {
   groups = ["developers"]
 }
 
+module "nicholas_kumia" {
+  source = "./user"
+  name   = "nicholas.kumia@gsa.gov"
+  groups = ["developers"]
+}
+
