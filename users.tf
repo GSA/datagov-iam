@@ -18,6 +18,24 @@ module "bret_mogilefsky" {
   ]
 }
 
+module "jin_sun" {
+  source = "./user"
+  name   = "jin.sun@gsa.gov"
+  groups = [
+    "developers",
+    "Admin",
+  ]
+}
+
+module "tyler_burton" {
+  source = "./user"
+  name   = "tyler.burton@gsa.gov"
+  groups = [
+    "developers",
+    "Admin",
+  ]
+}
+
 module "fuhu_xia" {
   source = "./user"
   name   = "fuhu.xia@gsa.gov"
